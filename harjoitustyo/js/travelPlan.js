@@ -33,12 +33,14 @@ function buildFlag(country) {
   ];
 }
 
-function buildNameAndCountry(country) {
-  return [
-    el("div", {class: 'countryName'}, country.name),
-    el("div", {class: 'capital'},     country.capital)
-  ];
-}
+
+const tags = (data, taggers) => taggers.map(tagger => tagger(data));
+
+const tag_countryName = country => el("div", {class: 'countryName'}, country.name),
+      tag_capital     = country => el("div", {class: 'capital'},     country.capital);
+
+const buildNameAndCountry = country =>
+  tags(country, [tag_countryName, tag_capital]);
 
 function buildCurrency(country) {
   let curr = country.currencies[0];
