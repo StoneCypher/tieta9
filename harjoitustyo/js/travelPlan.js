@@ -40,30 +40,21 @@ const tag_flag          = country => el("img", {class: 'flag', src: country.flag
       tag_borders       = country => el("div", {class: 'borders'}, "Borders"),
       tag_borderList    = country => el("div", {class: 'borderList'}, country.borders.join(', '));
 
-const buildFlag = country =>
-  tags(country, [tag_flag]);
-
-const buildNameAndCountry = country =>
-  tags(country, [tag_countryName, tag_capital]);
-
-const buildCurrency = country =>
-  tags(country, [tag_currencyLabel, tag_currencyData]);
-
-const buildBorderCountries = country =>
-  tags(country, [tag_borders, tag_borderList]);
-
 
 
 
 
 function buildCountry(country) { // Build country data in a div
   document.querySelector("#container").appendChild(
-    el("div", {}, '', [
-      ... buildFlag(country),
-      ... buildNameAndCountry(country),
-      ... buildCurrency(country),
-      ... buildBorderCountries(country)
-    ])
+    el("div", {}, '',
+      [
+        tag_flag,
+        tag_countryName, tag_capital,
+        tag_currencyLabel, tag_currencyData,
+        tag_borders, tag_borderList
+      ]
+        .map(tagger => tagger(country))
+    )
   );
 }
 
