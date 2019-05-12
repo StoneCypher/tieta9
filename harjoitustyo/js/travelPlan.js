@@ -35,7 +35,7 @@ function buildFlag(country) {
 }
 
 function buildNameAndCountry(country) {
-  let nameSpan = el("span", {}, `<strong>${country.name.toString()}</strong>:<br>`);
+  let nameSpan = el("div", {class: 'countryName'}, `${country.name.toString()}:`);
   let capSpan  = el("span", {}, `${country.capital.toString()}<br><br>`);
   let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
   return nameDiv;
