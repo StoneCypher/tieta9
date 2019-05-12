@@ -12,21 +12,15 @@ const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
       shuffle                   = arr      => undecorate(shuffle_sort(decorate(arr.slice()))),
       sample                    = (c, arr) => shuffle(arr).slice(c);
 
+function buildCountriesFromData(data) {
+  sample(3, data.filter(atLeastTwoBorderCountries))
+    .map(buildCountry);
+}
+
 fetch(dataSource)
-  .then (function(response) {                          // Error if data missing
-    if (response.status !== 200) {
-      console.log("Data not found! Code: " + response.status);
-      return;
-    }
-    return response.json();
-  })
-  .then(function(data) {
-    sample(3, data.filter(atLeastTwoBorderCountries))
-      .map(buildCountry);
-  })
-  .catch(function(err) {
-    console.log('Fetch catch clause', err);
-  });
+  .then(response => response.json())
+  .then(buildCountriesFromData)
+  .catch(err => console.log('Fetch catch clause', err));
 
 
 
