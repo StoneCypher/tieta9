@@ -30,40 +30,36 @@ function el(tag, opts = {}, inner = '', children = []) {
 
 function buildFlag(country) {
   let flagImg = el("img", {src: country.flag, width: 150});
-  let flagDiv = el("div", {}, '', [flagImg]);
-  return flagDiv;
+  return [flagImg];
 }
 
 function buildNameAndCountry(country) {
   let nameSpan = el("div", {class: 'countryName'}, country.name.toString());
   let capSpan  = el("div", {class: 'capital'},     country.capital.toString());
-  let nameDiv  = el("div", {},    '', [nameSpan, capSpan]);
-  return nameDiv;
+  return [nameSpan, capSpan];
 }
 
 function buildCurrency(country) {
   let curr    = country.currencies[0];
   let curHead = el("div", {class: 'currencyLabel'}, "Currency:");
   let curSpan = el("div", {class: 'currencyData'}, `${curr.name.toString()} [${curr.code.toString()}]`);
-  let curDiv  = el('div', {}, '', [curHead, curSpan]);
-  return curDiv;
+  return [curHead, curSpan];
 }
 
 function buildBorderCountries(country) {
   let borderString = `${country.borders.join(', ')}.`;
   let borListSpan  = el("span", {}, `${borderString}<br/><br/>`);
   let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
-  let borDiv       = el("div",  {}, '', [borHead, borListSpan]);
-  return borDiv;
+  return [borHead, borListSpan];
 }
 
 function buildCountry(country) { // Build country data in a div
   document.querySelector("#container").appendChild(
     el("div", {}, '', [
-      buildFlag(country),
-      buildNameAndCountry(country),
-      buildCurrency(country),
-      buildBorderCountries(country)
+      ... buildFlag(country),
+      ... buildNameAndCountry(country),
+      ... buildCurrency(country),
+      ... buildBorderCountries(country)
     ])
   );
 }
