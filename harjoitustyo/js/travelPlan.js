@@ -35,8 +35,8 @@ function buildFlag(country) {
 }
 
 function buildNameAndCountry(country) {
-  let nameSpan = el("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
-  let capSpan  = el("span", {}, country.capital.toString() + "<br><br>");
+  let nameSpan = el("span", {}, `<strong>${country.name.toString()}</strong>:<br>`);
+  let capSpan  = el("span", {}, `${country.capital.toString()}<br><br>`);
   let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
   return nameDiv;
 }
@@ -44,16 +44,16 @@ function buildNameAndCountry(country) {
 function buildCurrency(country) {
   let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
   let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
-  let curShortSpan = el("span", {}, " [" + country.currencies[0].code.toString() + "]<br><br>");
+  let curShortSpan = el("span", {}, ` [${country.currencies[0].code.toString()}]<br><br>`);
   let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
   return curDiv;
 }
 
 function buildBorderCountries(country) {
-  let borderString = country.borders.join(', ') + '.';
-  let borListSpan  = el("span", {}, borderString + '<br/><br/>');
+  let borderString = `${country.borders.join(', ')}.`;
+  let borListSpan  = el("span", {}, `${borderString}<br/><br/>`);
   let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
-  let borDiv       = el("div", {}, '', [borHead, borListSpan]);
+  let borDiv       = el("div",  {}, '', [borHead, borListSpan]);
   return borDiv;
 }
 
