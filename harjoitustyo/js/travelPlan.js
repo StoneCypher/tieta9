@@ -51,25 +51,31 @@ function buildNameAndCountry(country) {
   return nameDiv;
 }
 
-function buildCountry(country) { // Build country data in a div
-
-  let flagDiv = buildFlag(country);
-  let nameDiv = buildNameAndCountry(country);
-
-  // Currency
+function buildCurrency(country) {
   let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
   let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
   let curShortSpan = el("span", {}, " [" + country.currencies[0].code.toString() + "]<br><br>");
   let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
+  return curDiv;
+}
 
-  // Border countries
+function buildBorderCountries(country) {
   let borderString = country.borders.join(', ') + '.';
   let borListSpan  = el("span", {}, borderString + '<br/><br/>');
   let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
   let borDiv       = el("div", {}, '', [borHead, borListSpan]);
+  return borDiv;
+}
+
+function buildCountry(country) { // Build country data in a div
+
+  let flagDiv = buildFlag(country);
+  let nameDiv = buildNameAndCountry(country);
+  let currDiv = buildCurrency(country);
+  let borDiv  = buildBorderCountries(country);
 
   // The actual country
-  let countryDiv   = el("div", {}, '', [flagDiv, nameDiv, curDiv, borDiv]);
+  let countryDiv = el("div", {}, '', [flagDiv, nameDiv, currDiv, borDiv]);
 
   // Push country div to container
   container.appendChild(countryDiv);
