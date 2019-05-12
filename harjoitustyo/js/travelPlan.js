@@ -7,7 +7,7 @@ let dataSource = "https://restcountries.eu/rest/v2/all";    // Data source
 const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
       decorate                  = arr      => arr.map(i => [Math.random(), i]),
       undecorate                = arr      => arr.map(row => row[1]),
-      shuffle_sort              = arr      => arr.sort( (a,b) => a[0] < b[0]),
+      shuffle_sort              = arr      => arr.sort( (a,b) => a[0] < b[0]? -1 : 1),
       shuffle                   = arr      => undecorate(shuffle_sort(decorate(arr.slice()))),
       sample                    = (c, arr) => shuffle(arr).slice(c);
 
