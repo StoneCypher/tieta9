@@ -1,4 +1,8 @@
-.countryName, .currencyLabel { font-weight: bold; }
-.countryName::after { content: ':'; }
+.countryName, .currencyLabel, .borders { font-weight: bold; }
 
-.capital, .currencyData { margin-bottom: 1em; }
+.countryName::after, .borders::after { content: ':'; }
+.borderList::after                   { content: '.'; }
+
+.capital, .currencyData, .borderList { margin-bottom: 1em; }
+
+.flag { width: 150px; }

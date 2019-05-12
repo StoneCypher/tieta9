@@ -29,7 +29,7 @@ function el(tag, opts = {}, inner = '', children = []) {
 }
 
 function buildFlag(country) {
-  let flagImg = el("img", {src: country.flag, width: 150});
+  let flagImg = el("img", {class: 'flag', src: country.flag});
   return [flagImg];
 }
 
@@ -47,8 +47,8 @@ function buildCurrency(country) {
 }
 
 function buildBorderCountries(country) {
-  let borListSpan  = el("span", {}, `${country.borders.join(', ')}.<br/><br/>`);
-  let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
+  let borListSpan  = el("div", {class: 'borderList'}, country.borders.join(', '));
+  let borHead      = el("div", {class: 'borders'}, "Borders");
   return [borHead, borListSpan];
 }
 
