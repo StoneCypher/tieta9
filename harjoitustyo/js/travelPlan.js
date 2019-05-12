@@ -5,6 +5,13 @@ let container  = document.querySelector("#container"),      // Parent div elemen
 
 
 
+const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
+      decorate                  = arr      => arr.map(i => [Math.random(), i]),
+      undecorate                = arr      => arr.map(row => row[1]),
+      shuffle_sort              = arr      => arr.sort( (a,b) => a[0] < b[0]),
+      shuffle                   = arr      => undecorate(shuffle_sort(decorate(arr.slice()))),
+      sample                    = (c, arr) => shuffle(arr).slice(c);
+
 fetch(dataSource)
   .then (function(response) {                          // Error if data missing
     if (response.status !== 200) {
@@ -14,10 +21,7 @@ fetch(dataSource)
     return response.json();
   })
   .then(function(data) {
-    // Countries with at least two border countries
-    let validCountries = _.filter(data, function(country){ return country.borders.length >= 2; });
-    // Save three random countries
-    let startingCountries = _.sample(validCountries, 3);
+    let startingCountries = sample(3, data.filter(atLeastTwoBorderCountries));
     // Find the data of starting countries
     for (let i = 0; i < startingCountries.length; i++) {
         buildCountry(startingCountries[i]);
