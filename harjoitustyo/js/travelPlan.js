@@ -46,21 +46,15 @@ function buildCountry (country) { // Build country data in a div
     let flagDiv = el("div", {}, '', [flagImg]);
 
     // Name and capital
-    let nameSpan = document.createElement("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
-    let capSpan = el("span", {}, country.capital.toString() + "<br><br>");
-    let nameDiv = document.createElement("div", {}, '', [nameSpan, capSpan]);
+    let nameSpan = el("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
+    let capSpan  = el("span", {}, country.capital.toString() + "<br><br>");
+    let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
 
     // Currency
-    let curDiv = document.createElement("div");
-    let curHead = document.createElement("span");
-    let curLongSpan = document.createElement("span");
-    let curShortSpan = document.createElement("span");
-    curHead.innerHTML = "<strong>Currency:</strong><br>"
-    curLongSpan.innerHTML = country.currencies[0].name.toString();
-    curShortSpan.innerHTML = " [" + country.currencies[0].code.toString() + "]<br><br>";
-    curDiv.appendChild(curHead);
-    curDiv.appendChild(curLongSpan);
-    curDiv.appendChild(curShortSpan);
+    let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
+    let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
+    let curShortSpan = el("span", {}, " [" + country.currencies[0].code.toString() + "]<br><br>");
+    let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
 
     // Border countries
     let borDiv = document.createElement("div");
