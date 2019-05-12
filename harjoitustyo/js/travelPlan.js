@@ -26,11 +26,12 @@ fetch(dataSource)
 
 
 
-function el(tag, opts = {}, children = []) {
-  const elem = document.createElement(tag);
-  Object.keys(opts).map(opt => elem.setAttribute(opt, opts[opt]));
-  children.map(child => elem.appendChild(child));
-  return elem;
+function el(tag, opts = {}, inner = '', children = []) {
+  const elem = document.createElement(tag);                        // create the element
+  Object.keys(opts).map(opt => elem.setAttribute(opt, opts[opt])); // any key on opts should be sameval on tag
+  elem.innerHTML = inner;                                          // if an innerhtml string exists, set it
+  children.map(child => elem.appendChild(child));                  // append any children
+  return elem;                                                     // bail
 }
 
 function buildCountry (country) { // Build country data in a div
@@ -42,16 +43,12 @@ function buildCountry (country) { // Build country data in a div
 
     // Flag
     let flagImg = el("img", {src: country.flag, width: 150});
-    let flagDiv = el("div", {}, [flagDiv]);
+    let flagDiv = el("div", {}, '', [flagImg]);
 
     // Name and capital
-    let nameDiv = document.createElement("div");
-    let nameSpan = document.createElement("span");
-    let capSpan = document.createElement("span");
-    nameSpan.innerHTML = "<strong>" + country.name.toString() + "</strong>:<br>"
-    capSpan.innerHTML = country.capital.toString() + "<br><br>";
-    nameDiv.appendChild(nameSpan);
-    nameDiv.appendChild(capSpan);
+    let nameSpan = document.createElement("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
+    let capSpan = el("span", {}, country.capital.toString() + "<br><br>");
+    let nameDiv = document.createElement("div", {}, '', [nameSpan, capSpan]);
 
     // Currency
     let curDiv = document.createElement("div");
