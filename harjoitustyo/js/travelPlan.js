@@ -40,7 +40,10 @@ const tag_countryName   = country => el("div", {class: 'countryName'}, country.n
       tag_capital       = country => el("div", {class: 'capital'},     country.capital),
 
       tag_currencyLabel = country => el("div", {class: 'currencyLabel'}, "Currency:"),
-      tag_currencyData  = country => el("div", {class: 'currencyData'}, `${country.currencies[0].name} [${country.currencies[0].code}]`);
+      tag_currencyData  = country => el("div", {class: 'currencyData'}, `${country.currencies[0].name} [${country.currencies[0].code}]`),
+
+      tag_borders       = country => el("div", {class: 'borders'}, "Borders"),
+      tag_borderList    = country => el("div", {class: 'borderList'}, country.borders.join(', '));
 
 const buildNameAndCountry = country =>
   tags(country, [tag_countryName, tag_capital]);
@@ -48,13 +51,8 @@ const buildNameAndCountry = country =>
 const buildCurrency = country =>
   tags(country, [tag_currencyLabel, tag_currencyData]);
 
-
-function buildBorderCountries(country) {
-  return [
-    el("div", {class: 'borders'}, "Borders"),
-    el("div", {class: 'borderList'}, country.borders.join(', '))
-  ];
-}
+const buildBorderCountries = country =>
+  tags(country, [tag_borders, tag_borderList]);
 
 
 
