@@ -1,1 +1,4 @@
-.countryName { font-weight: bold; }
+.countryName, .currency { font-weight: bold; }
+.countryName::after { content: ':'; }
+
+.capital { margin-bottom: 1em; }
