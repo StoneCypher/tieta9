@@ -29,27 +29,31 @@ function el(tag, opts = {}, inner = '', children = []) {
 }
 
 function buildFlag(country) {
-  let flagImg = el("img", {class: 'flag', src: country.flag});
-  return [flagImg];
+  return [
+    el("img", {class: 'flag', src: country.flag})
+  ];
 }
 
 function buildNameAndCountry(country) {
-  let nameSpan = el("div", {class: 'countryName'}, country.name.toString());
-  let capSpan  = el("div", {class: 'capital'},     country.capital.toString());
-  return [nameSpan, capSpan];
+  return [
+    el("div", {class: 'countryName'}, country.name.toString()),
+    el("div", {class: 'capital'},     country.capital.toString())
+  ];
 }
 
 function buildCurrency(country) {
-  let curr    = country.currencies[0];
-  let curHead = el("div", {class: 'currencyLabel'}, "Currency:");
-  let curSpan = el("div", {class: 'currencyData'}, `${curr.name.toString()} [${curr.code.toString()}]`);
-  return [curHead, curSpan];
+  let curr = country.currencies[0];
+  return [
+    el("div", {class: 'currencyLabel'}, "Currency:"),
+    el("div", {class: 'currencyData'}, `${curr.name.toString()} [${curr.code.toString()}]`)
+  ];
 }
 
 function buildBorderCountries(country) {
-  let borListSpan  = el("div", {class: 'borderList'}, country.borders.join(', '));
-  let borHead      = el("div", {class: 'borders'}, "Borders");
-  return [borHead, borListSpan];
+  return [
+    el("div", {class: 'borderList'}, country.borders.join(', ')),
+    el("div", {class: 'borders'}, "Borders")
+  ];
 }
 
 function buildCountry(country) { // Build country data in a div
