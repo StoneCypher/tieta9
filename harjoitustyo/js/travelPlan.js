@@ -25,19 +25,24 @@ fetch(dataSource)
 
 
 
+
+function el(tag, opts = {}, children = []) {
+  const elem = document.createElement(tag);
+  Object.keys(opts).map(opt => elem.setAttribute(opt, opts[opt]));
+  children.map(child => elem.appendChild(child));
+  return elem;
+}
+
 function buildCountry (country) { // Build country data in a div
 
     // Country container
-    let countryDiv = document.createElement("div");
+    let countryDiv = el("div");
 
     // ADD COUNTRY DATA
 
     // Flag
-    let flagDiv = document.createElement("div");
-    let flagImg = document.createElement("img");
-    flagImg.setAttribute("src", country.flag);
-    flagImg.setAttribute("width", "150");
-    flagDiv.appendChild(flagImg);
+    let flagImg = el("img", {src: country.flag, width: 150});
+    let flagDiv = el("div", {}, [flagDiv]);
 
     // Name and capital
     let nameDiv = document.createElement("div");
