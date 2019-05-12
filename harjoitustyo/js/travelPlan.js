@@ -20,15 +20,6 @@ function buildCountriesFromData(data) {
     .map(buildCountry);
 }
 
-fetch(dataSource)
-  .then(response => response.json())
-  .then(buildCountriesFromData)
-  .catch(err => console.log('Fetch catch clause', err));
-
-
-
-
-
 function el(tag, opts = {}, inner = '', children = []) {
   const elem = document.createElement(tag);                        // create the element
   Object.keys(opts).map(opt => elem.setAttribute(opt, opts[opt])); // any key on opts should be sameval on tag
@@ -76,3 +67,18 @@ function buildCountry(country) { // Build country data in a div
     ])
   );
 }
+
+
+
+
+
+function run() {
+
+  fetch(dataSource)
+    .then(response => response.json())
+    .then(buildCountriesFromData)
+    .catch(err => console.log('Fetch catch clause', err));
+
+}
+
+window.onload = run;
