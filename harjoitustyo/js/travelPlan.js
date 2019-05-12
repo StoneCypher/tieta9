@@ -27,16 +27,11 @@ function el(tag, opts = {}, inner = '', children = []) {
 
 
 
-function buildFlag(country) {
-  return [
-    el("img", {class: 'flag', src: country.flag})
-  ];
-}
-
-
 const tags = (data, taggers) => taggers.map(tagger => tagger(data));
 
-const tag_countryName   = country => el("div", {class: 'countryName'}, country.name),
+const tag_flag          = country => el("img", {class: 'flag', src: country.flag}),
+
+      tag_countryName   = country => el("div", {class: 'countryName'}, country.name),
       tag_capital       = country => el("div", {class: 'capital'},     country.capital),
 
       tag_currencyLabel = country => el("div", {class: 'currencyLabel'}, "Currency:"),
@@ -44,6 +39,9 @@ const tag_countryName   = country => el("div", {class: 'countryName'}, country.n
 
       tag_borders       = country => el("div", {class: 'borders'}, "Borders"),
       tag_borderList    = country => el("div", {class: 'borderList'}, country.borders.join(', '));
+
+const buildFlag = country =>
+  tags(country, [tag_flag]);
 
 const buildNameAndCountry = country =>
   tags(country, [tag_countryName, tag_capital]);
