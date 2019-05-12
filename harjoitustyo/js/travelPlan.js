@@ -15,11 +15,6 @@ const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
 
 
 
-function buildCountriesFromData(data) {
-  sample(3, data.filter(atLeastTwoBorderCountries))
-    .map(buildCountry);
-}
-
 function el(tag, opts = {}, inner = '', children = []) {
   const elem = document.createElement(tag);                        // create the element
   Object.keys(opts).map(opt => elem.setAttribute(opt, opts[opt])); // any key on opts should be sameval on tag
@@ -27,6 +22,10 @@ function el(tag, opts = {}, inner = '', children = []) {
   children.map(child => elem.appendChild(child));                  // append any children
   return elem;                                                     // bail
 }
+
+
+
+
 
 function buildFlag(country) {
   return [
@@ -56,6 +55,10 @@ function buildBorderCountries(country) {
   ];
 }
 
+
+
+
+
 function buildCountry(country) { // Build country data in a div
   document.querySelector("#container").appendChild(
     el("div", {}, '', [
@@ -65,6 +68,11 @@ function buildCountry(country) { // Build country data in a div
       ... buildBorderCountries(country)
     ])
   );
+}
+
+function buildCountriesFromData(data) {
+  return sample(3, data.filter(atLeastTwoBorderCountries))
+    .map(buildCountry);
 }
 
 
