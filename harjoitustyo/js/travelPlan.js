@@ -35,8 +35,8 @@ function buildFlag(country) {
 
 function buildNameAndCountry(country) {
   return [
-    el("div", {class: 'countryName'}, country.name.toString()),
-    el("div", {class: 'capital'},     country.capital.toString())
+    el("div", {class: 'countryName'}, country.name),
+    el("div", {class: 'capital'},     country.capital)
   ];
 }
 
@@ -44,7 +44,7 @@ function buildCurrency(country) {
   let curr = country.currencies[0];
   return [
     el("div", {class: 'currencyLabel'}, "Currency:"),
-    el("div", {class: 'currencyData'}, `${curr.name.toString()} [${curr.code.toString()}]`)
+    el("div", {class: 'currencyData'}, `${curr.name} [${curr.code}]`)
   ];
 }
 
