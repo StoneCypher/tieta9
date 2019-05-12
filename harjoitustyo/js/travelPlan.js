@@ -57,14 +57,10 @@ function buildCountry (country) { // Build country data in a div
     let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
 
     // Border countries
-    let borDiv = document.createElement("div");
-    let borHead = document.createElement("span");
-    let borListSpan = document.createElement("span");
-    borHead.innerHTML = "<strong>Borders:</strong><br>";
     let borderString = country.borders.join(', ') + '.';
-    borListSpan.innerHTML = borderString + "<br><br>";
-    borDiv.appendChild(borHead);
-    borDiv.appendChild(borListSpan);
+    let borListSpan = el("span", {}, borderString + '<br/><br/>');
+    let borHead = el("span", {}, "<strong>Borders:</strong><br>");
+    let borDiv = document.createElement("div", {}, '', [borHead, borListSpan]);
 
     // Push elements to country div
     countryDiv.appendChild(flagDiv);
