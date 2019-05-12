@@ -12,6 +12,10 @@ const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
       shuffle                   = arr      => undecorate(shuffle_sort(decorate(arr.slice()))),
       sample                    = (c, arr) => shuffle(arr).slice(c);
 
+
+
+
+
 function buildCountriesFromData(data) {
   sample(3, data.filter(atLeastTwoBorderCountries))
     .map(buildCountry);
@@ -36,38 +40,31 @@ function el(tag, opts = {}, inner = '', children = []) {
 
 function buildCountry (country) { // Build country data in a div
 
-    // Country container
-    let countryDiv = el("div");
+  // Flag
+  let flagImg = el("img", {src: country.flag, width: 150});
+  let flagDiv = el("div", {}, '', [flagImg]);
 
-    // ADD COUNTRY DATA
+  // Name and capital
+  let nameSpan = el("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
+  let capSpan  = el("span", {}, country.capital.toString() + "<br><br>");
+  let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
 
-    // Flag
-    let flagImg = el("img", {src: country.flag, width: 150});
-    let flagDiv = el("div", {}, '', [flagImg]);
+  // Currency
+  let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
+  let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
+  let curShortSpan = el("span", {}, " [" + country.currencies[0].code.toString() + "]<br><br>");
+  let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
 
-    // Name and capital
-    let nameSpan = el("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
-    let capSpan  = el("span", {}, country.capital.toString() + "<br><br>");
-    let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
+  // Border countries
+  let borderString = country.borders.join(', ') + '.';
+  let borListSpan  = el("span", {}, borderString + '<br/><br/>');
+  let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
+  let borDiv       = el("div", {}, '', [borHead, borListSpan]);
 
-    // Currency
-    let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
-    let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
-    let curShortSpan = el("span", {}, " [" + country.currencies[0].code.toString() + "]<br><br>");
-    let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
+  // The actual country
+  let countryDiv   = el("div", {}, '', [flagDiv, nameDiv, curDiv, borDiv]);
 
-    // Border countries
-    let borderString = country.borders.join(', ') + '.';
-    let borListSpan = el("span", {}, borderString + '<br/><br/>');
-    let borHead = el("span", {}, "<strong>Borders:</strong><br>");
-    let borDiv = document.createElement("div", {}, '', [borHead, borListSpan]);
+  // Push country div to container
+  container.appendChild(countryDiv);
 
-    // Push elements to country div
-    countryDiv.appendChild(flagDiv);
-    countryDiv.appendChild(nameDiv);
-    countryDiv.appendChild(curDiv);
-    countryDiv.appendChild(borDiv);
-
-    // Push country div to container
-    container.appendChild(countryDiv);
 }
