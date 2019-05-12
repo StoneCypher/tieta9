@@ -27,8 +27,6 @@ function el(tag, opts = {}, inner = '', children = []) {
 
 
 
-const tags = (data, taggers) => taggers.map(tagger => tagger(data));
-
 const tag_flag          = country => el("img", {class: 'flag', src: country.flag}),
 
       tag_countryName   = country => el("div", {class: 'countryName'}, country.name),
@@ -45,16 +43,20 @@ const tag_flag          = country => el("img", {class: 'flag', src: country.flag
 
 
 function buildCountry(country) { // Build country data in a div
-  document.querySelector("#container").appendChild(
+
+  document.querySelector("#container")
+          .appendChild(
+
     el("div", {}, '',
       [
-        tag_flag,
-        tag_countryName, tag_capital,
-        tag_currencyLabel, tag_currencyData,
-        tag_borders, tag_borderList
+        tag_flag,                            // flag row
+        tag_countryName, tag_capital,        // country row
+        tag_currencyLabel, tag_currencyData, // currency row
+        tag_borders, tag_borderList          // border row
       ]
         .map(tagger => tagger(country))
     )
+
   );
 }
 
@@ -67,13 +69,9 @@ function buildCountriesFromData(data) {
 
 
 
-function run() {
+window.onload = () =>
 
   fetch(dataSource)
     .then(response => response.json())
     .then(buildCountriesFromData)
     .catch(err => console.log('Fetch catch clause', err));
-
-}
-
-window.onload = run;
