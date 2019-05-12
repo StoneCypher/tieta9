@@ -61,15 +61,7 @@ function buildCountry (country) { // Build country data in a div
     let borHead = document.createElement("span");
     let borListSpan = document.createElement("span");
     borHead.innerHTML = "<strong>Borders:</strong><br>";
-    let borderString = "";
-    for (let i = 0; i < country.borders.length; i++) {
-      if (i == country.borders.length -1) {
-        borderString += country.borders[i] + ".";
-      }
-      else {
-        borderString += country.borders[i] + ", ";
-      }
-    };
+    let borderString = country.borders.join(', ') + '.';
     borListSpan.innerHTML = borderString + "<br><br>";
     borDiv.appendChild(borHead);
     borDiv.appendChild(borListSpan);
