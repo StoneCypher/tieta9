@@ -60,10 +60,9 @@ function buildCountry(country) { // Build country data in a div
   );
 }
 
-function buildCountriesFromData(data) {
-  return sample(3, data.filter(atLeastTwoBorderCountries))
+const buildCountriesFromData = data =>
+  sample(3, data.filter(atLeastTwoBorderCountries))
     .map(buildCountry);
-}
 
 
 
