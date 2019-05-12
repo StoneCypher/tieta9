@@ -1,4 +1,4 @@
-.countryName, .currency { font-weight: bold; }
+.countryName, .currencyLabel { font-weight: bold; }
 .countryName::after { content: ':'; }
 
-.capital { margin-bottom: 1em; }
+.capital, .currencyData { margin-bottom: 1em; }

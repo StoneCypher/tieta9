@@ -42,10 +42,10 @@ function buildNameAndCountry(country) {
 }
 
 function buildCurrency(country) {
-  let curHead      = el("div", {class: 'currency'}, "Currency:");
-  let curLongSpan  = el("span", {}, country.currencies[0].name.toString());
-  let curShortSpan = el("span", {}, ` [${country.currencies[0].code.toString()}]<br><br>`);
-  let curDiv       = el('div',  {}, '', [curHead, curLongSpan, curShortSpan]);
+  let curr    = country.currencies[0];
+  let curHead = el("div", {class: 'currencyLabel'}, "Currency:");
+  let curSpan = el("div", {class: 'currencyData'}, `${curr.name.toString()} [${curr.code.toString()}]`);
+  let curDiv  = el('div', {}, '', [curHead, curSpan]);
   return curDiv;
 }
 
