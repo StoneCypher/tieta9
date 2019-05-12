@@ -21,12 +21,8 @@ fetch(dataSource)
     return response.json();
   })
   .then(function(data) {
-    let startingCountries = sample(3, data.filter(atLeastTwoBorderCountries));
-    // Find the data of starting countries
-    for (let i = 0; i < startingCountries.length; i++) {
-        buildCountry(startingCountries[i]);
-        //console.log(startingCountries[i].name.toString());
-    };
+    sample(3, data.filter(atLeastTwoBorderCountries))
+      .map(buildCountry);
   })
   .catch(function(err) {
     console.log('Fetch catch clause', err);
