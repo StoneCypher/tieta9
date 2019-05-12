@@ -36,24 +36,23 @@ function buildFlag(country) {
 
 const tags = (data, taggers) => taggers.map(tagger => tagger(data));
 
-const tag_countryName = country => el("div", {class: 'countryName'}, country.name),
-      tag_capital     = country => el("div", {class: 'capital'},     country.capital);
+const tag_countryName   = country => el("div", {class: 'countryName'}, country.name),
+      tag_capital       = country => el("div", {class: 'capital'},     country.capital),
+
+      tag_currencyLabel = country => el("div", {class: 'currencyLabel'}, "Currency:"),
+      tag_currencyData  = country => el("div", {class: 'currencyData'}, `${country.currencies[0].name} [${country.currencies[0].code}]`);
 
 const buildNameAndCountry = country =>
   tags(country, [tag_countryName, tag_capital]);
 
-function buildCurrency(country) {
-  let curr = country.currencies[0];
-  return [
-    el("div", {class: 'currencyLabel'}, "Currency:"),
-    el("div", {class: 'currencyData'}, `${curr.name} [${curr.code}]`)
-  ];
-}
+const buildCurrency = country =>
+  tags(country, [tag_currencyLabel, tag_currencyData]);
+
 
 function buildBorderCountries(country) {
   return [
-    el("div", {class: 'borderList'}, country.borders.join(', ')),
-    el("div", {class: 'borders'}, "Borders")
+    el("div", {class: 'borders'}, "Borders"),
+    el("div", {class: 'borderList'}, country.borders.join(', '))
   ];
 }
 
