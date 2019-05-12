@@ -38,16 +38,23 @@ function el(tag, opts = {}, inner = '', children = []) {
   return elem;                                                     // bail
 }
 
-function buildCountry (country) { // Build country data in a div
-
-  // Flag
+function buildFlag(country) {
   let flagImg = el("img", {src: country.flag, width: 150});
   let flagDiv = el("div", {}, '', [flagImg]);
+  return flagDiv;
+}
 
-  // Name and capital
+function buildNameAndCountry(country) {
   let nameSpan = el("span", {}, "<strong>" + country.name.toString() + "</strong>:<br>");
   let capSpan  = el("span", {}, country.capital.toString() + "<br><br>");
   let nameDiv  = el("div",  {}, '', [nameSpan, capSpan]);
+  return nameDiv;
+}
+
+function buildCountry(country) { // Build country data in a div
+
+  let flagDiv = buildFlag(country);
+  let nameDiv = buildNameAndCountry(country);
 
   // Currency
   let curHead      = el("span", {}, "<strong>Currency:</strong><br>");
