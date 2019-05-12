@@ -42,7 +42,7 @@ const tag_flag          = country => el("img", {class: 'flag', src: country.flag
 
 
 
-function buildCountry(country) { // Build country data in a div
+const buildCountry = country => // Build country data in a div
 
   document.querySelector("#container")
           .appendChild(
@@ -58,9 +58,11 @@ function buildCountry(country) { // Build country data in a div
     )
 
   );
-}
+
+
 
 const buildCountriesFromData = data =>
+
   sample(3, data.filter(atLeastTwoBorderCountries))
     .map(buildCountry);
 
