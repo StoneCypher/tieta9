@@ -1,7 +1,6 @@
 "use strict"
 
-let container  = document.querySelector("#container"),      // Parent div element
-    dataSource = "https://restcountries.eu/rest/v2/all";    // Data source
+let dataSource = "https://restcountries.eu/rest/v2/all";    // Data source
 
 
 
@@ -68,7 +67,7 @@ function buildBorderCountries(country) {
 }
 
 function buildCountry(country) { // Build country data in a div
-  container.appendChild(
+  document.querySelector("#container").appendChild(
     el("div", {}, '', [
       buildFlag(country),
       buildNameAndCountry(country),
