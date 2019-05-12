@@ -9,7 +9,7 @@ const atLeastTwoBorderCountries = country  => country.borders.length >= 2,
       undecorate                = arr      => arr.map(row => row[1]),
       shuffle_sort              = arr      => arr.sort( (a,b) => a[0] < b[0]? -1 : 1),
       shuffle                   = arr      => undecorate(shuffle_sort(decorate(arr.slice()))),
-      sample                    = (c, arr) => shuffle(arr).slice(c);
+      sample                    = (c, arr) => shuffle(arr).slice(0,c);
 
 
 
