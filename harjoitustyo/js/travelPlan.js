@@ -68,16 +68,12 @@ function buildBorderCountries(country) {
 }
 
 function buildCountry(country) { // Build country data in a div
-
-  let flagDiv = buildFlag(country);
-  let nameDiv = buildNameAndCountry(country);
-  let currDiv = buildCurrency(country);
-  let borDiv  = buildBorderCountries(country);
-
-  // The actual country
-  let countryDiv = el("div", {}, '', [flagDiv, nameDiv, currDiv, borDiv]);
-
-  // Push country div to container
-  container.appendChild(countryDiv);
-
+  container.appendChild(
+    el("div", {}, '', [
+      buildFlag(country),
+      buildNameAndCountry(country),
+      buildCurrency(country),
+      buildBorderCountries(country)
+    ])
+  );
 }
