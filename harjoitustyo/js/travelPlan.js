@@ -47,8 +47,7 @@ function buildCurrency(country) {
 }
 
 function buildBorderCountries(country) {
-  let borderString = `${country.borders.join(', ')}.`;
-  let borListSpan  = el("span", {}, `${borderString}<br/><br/>`);
+  let borListSpan  = el("span", {}, `${country.borders.join(', ')}.<br/><br/>`);
   let borHead      = el("span", {}, "<strong>Borders:</strong><br>");
   return [borHead, borListSpan];
 }
